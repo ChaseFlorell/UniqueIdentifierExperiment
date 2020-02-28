@@ -1,5 +1,8 @@
 # UniqueIdentifierExperiment
 
+This is a similar approach to what the Azure Sync Framework has done with [CompositeTableKey](https://docs.microsoft.com/ko-kr/dotnet/api/microsoft.azure.mobile.server.compositetablekey?view=azure-dotnet)
+https://wp.sjkp.dk/azure-mobile-service-net-backend-using-azure-table-storage-part-2/
+
 ```csharp
         [Test]
         public void ShouldCreateBasicEntityId()
