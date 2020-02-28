@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace UniqueIdentifierExperiment
 {
-    public class UniqueIdentifierGenerator
+    public static class UniqueIdentifierGenerator
     {
-        public static void SetId<TEntity>(ref TEntity newEntity) where TEntity : ITableEntity
+        public static void SetId<TEntity>(this TEntity newEntity) where TEntity : ITableEntity
         {
             var entityType = typeof(TEntity);
             var uniqueOnAttribute = (UniqueOnAttribute)Attribute.GetCustomAttribute(entityType, typeof(UniqueOnAttribute));
@@ -16,14 +17,12 @@ namespace UniqueIdentifierExperiment
             }
             else
             {
-                var values = new List<object>();
                 var uniqueColumns = uniqueOnAttribute.GetColumns();
-                foreach (var column in uniqueColumns)
-                {
-                    var value = entityType.GetProperty(column)?.GetValue(newEntity, null);
-                    var formatted = $"'{value}'";
-                    values.Add(formatted);
-                }
+                var values = uniqueColumns
+                    .Select(column => entityType.GetProperty(column)?.GetValue(newEntity, null))
+                    .Select(value => $"'{value}'").
+                    Cast<object>()
+                    .ToList();
 
                 newEntity.Id = string.Join(",", values);
             }
