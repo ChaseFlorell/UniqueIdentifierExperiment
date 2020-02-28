@@ -16,7 +16,7 @@ namespace UniqueIdentifierExperiment
             }
             else
             {
-                var values = new HashSet<object>();
+                var values = new List<object>();
                 var uniqueColumns = uniqueOnAttribute.GetColumns();
                 foreach (var column in uniqueColumns)
                 {
