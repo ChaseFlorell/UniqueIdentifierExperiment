@@ -1,0 +1,8 @@
+/Users/chaseflorell/Projects/UniqueIdExperiment/UniqueIdentifierExperiment/bin/Debug/netstandard2.0/UniqueIdentifierExperiment.deps.json
+/Users/chaseflorell/Projects/UniqueIdExperiment/UniqueIdentifierExperiment/bin/Debug/netstandard2.0/UniqueIdentifierExperiment.dll
+/Users/chaseflorell/Projects/UniqueIdExperiment/UniqueIdentifierExperiment/bin/Debug/netstandard2.0/UniqueIdentifierExperiment.pdb
+/Users/chaseflorell/Projects/UniqueIdExperiment/UniqueIdentifierExperiment/obj/Debug/netstandard2.0/UniqueIdentifierExperiment.csprojAssemblyReference.cache
+/Users/chaseflorell/Projects/UniqueIdExperiment/UniqueIdentifierExperiment/obj/Debug/netstandard2.0/UniqueIdentifierExperiment.AssemblyInfoInputs.cache
+/Users/chaseflorell/Projects/UniqueIdExperiment/UniqueIdentifierExperiment/obj/Debug/netstandard2.0/UniqueIdentifierExperiment.AssemblyInfo.cs
+/Users/chaseflorell/Projects/UniqueIdExperiment/UniqueIdentifierExperiment/obj/Debug/netstandard2.0/UniqueIdentifierExperiment.dll
+/Users/chaseflorell/Projects/UniqueIdExperiment/UniqueIdentifierExperiment/obj/Debug/netstandard2.0/UniqueIdentifierExperiment.pdb
