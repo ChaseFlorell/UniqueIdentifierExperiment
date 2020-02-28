@@ -15,7 +15,7 @@ namespace UniqueIdentifierExperiment.Tests
             var entity = new EntityWithoutConstraints();
             
             // execute
-            UniqueIdentifierGenerator.SetId(ref entity);
+            entity.CreateNewId();
             var isGuid = Guid.TryParse(entity.Id, out _);
             
             // assert
@@ -29,7 +29,7 @@ namespace UniqueIdentifierExperiment.Tests
             // setup
             const int expectedCropYear = 2020;
             var expectedId = $"'{expectedCropYear}','{EntityFixture.OneId}'";
-            var newEntity = new EntityWithConstraints
+            var newEntity = new EntityWithConstraintsOne
             {
                 CropYear = expectedCropYear,
                 EntityWithoutConstraints = EntityFixture.One,
@@ -37,10 +37,46 @@ namespace UniqueIdentifierExperiment.Tests
             };
             
             // execute
-            UniqueIdentifierGenerator.SetId(ref newEntity);
+            newEntity.CreateNewId();
 
             // assert
             newEntity.Id.Should().Be(expectedId);
+        }
+
+
+        [Test]
+        public void ShouldCreateKnownEntityIdsFromComplexUniqueConstraints()
+        {
+            // setup
+            const int expectedCropYear = 2020;
+            const int expectedComplexCropYear = 2012;
+            var parentId = $"'{expectedCropYear}','{EntityFixture.OneId}'";
+            var expectedComplexId = $"'{expectedComplexCropYear}','{EntityFixture.OneId}','{parentId}'";
+            var parentEntity = new EntityWithConstraintsOne
+            {
+                CropYear = expectedCropYear,
+                EntityWithoutConstraints = EntityFixture.One,
+                EntityWithoutConstraintsId = EntityFixture.OneId
+            };
+            // execute
+            parentEntity.CreateNewId();
+            
+            // setup
+            var complexEntity = new EntityWithConstraintsTwo
+            {
+                CropYear = expectedComplexCropYear,
+                EntityWithoutConstraints = EntityFixture.One,
+                EntityWithoutConstraintsId = EntityFixture.OneId,
+                Parent = parentEntity,
+                ParentId = parentEntity.Id
+            };
+            
+            // execute
+            complexEntity.CreateNewId();
+
+            // assert
+            parentEntity.Id.Should().Be(parentId);
+            complexEntity.Id.Should().Be(expectedComplexId);
         }
     }
 }
